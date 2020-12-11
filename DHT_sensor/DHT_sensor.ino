@@ -1,4 +1,4 @@
-#include "DHT.h" //library to be downloaded
+#include "DHT.h" //library to be downloaded from internet
 #define DHTPIN 8 //digital pin connected to the DHT sensor
 #define DHTTYPE DHT11 //type of DHT sensor used
 //other types are DHT22 (AM2302) and DHT 21 (AM2301)
