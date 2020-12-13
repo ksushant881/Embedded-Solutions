@@ -9,7 +9,7 @@ void setup() {
   pinMode(aswitch,INPUT);  
 }
 
-void loop() { //can it be here digitalRead(aswitch)==LOW???
+void loop() { //can it be here digitalRead(aswitch)==LOW??? Yes
   if(digitalRead(aswitch)==0){ //sensors have activated logic 0 deactivated then logic 0
     digitalWrite(led,HIGH); //pin and logic that we want to apply
   }
