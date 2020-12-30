@@ -31,30 +31,48 @@ void MQTT_connect();
 
 //client mode because it is going to receive the data from mqtt server
 
-//setup mqtt client
-Adafruit_MQTT_Client_mqtt(&client,AIO_SERVER
-
-
-//on off
-
 
 void setup() {
   Serial.begin(9600); //baud rate of wifi is 115200 but we can use 9600 also
   pinMode(Realy1,OUTPUT);
 
   //connect to wifi access point
-  
-  //display ip address
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(WLAN_SSID);
 
+  WiFi.begin(WLAN_SSID, WLAN_PASS);
+  while(WiFi.status != WL_CONNECTED){
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  //display ip address
+  Serial.println("WiFi connected");
+  Serial.println("IP Address: ");
+  Serial.println(WiFi.localIP());
+  
   //setup mqtt subscription for on off feed
   mqtt.subscribe(&lighton); //&because it is a string sending the address of first letter
-  mqtt.sub
+  mqtt.subscribe(&lightoff);
+  
 }
 
 void loop() {
   MQTT_connect();
 
-  //if subscription==light on then turn on  
-
+  Adafruit_MQTT_Subscribe *subscription;    //if subscription==light on then turn on  
+  while((subscription = mqtt.readSubscription(5000))){
+    if(subscription==&lighton){
+      digitalWrite(Relay1,1);
+    }
+    if(subscription==&lightoff){
+      digitalWrite(Realy1,0);
+    }
+  }
 }
 //subscription is the input we are giving to google assistant
+  void MQTT_connect(){
+    int
+  }
